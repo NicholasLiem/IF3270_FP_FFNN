@@ -1,3 +1,4 @@
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -37,6 +38,7 @@ class GraphNetworkVisualizer:
 
                 for prev_node_id in previous_layer_nodes:
                     weight = weight_matrix[previous_layer_nodes.index(prev_node_id), neuron_index]
+                    # print(f"Index: {prev_node_id}, neuron index: {neuron_index}, weight: {weight}")
                     G.add_edge(prev_node_id, current_node_id, weight=float(weight))
 
                 current_node_id += 1
@@ -54,7 +56,7 @@ class GraphNetworkVisualizer:
         colors = list(nx.get_node_attributes(G, 'color').values())
         labels = nx.get_node_attributes(G, 'label')
 
-        plt.figure(figsize=(18, 12))
+        plt.figure(figsize=(12, 6))
         nx.draw(G, pos, labels=labels, with_labels=True, node_size=1200, node_color=colors, font_size=10, font_weight='bold')
         nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=9)
         plt.axis('off')
