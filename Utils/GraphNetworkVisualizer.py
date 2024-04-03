@@ -17,6 +17,7 @@ class GraphNetworkVisualizer:
 
         count = 1
         for each_input_data in self.input_data:
+          plt.figure(figsize=(12,6.75))
           G = self.graph
           previous_layer_nodes = []
           current_node_id = 0
