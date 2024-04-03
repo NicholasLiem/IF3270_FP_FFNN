@@ -17,9 +17,11 @@ class GraphNetworkVisualizer:
         previous_layer_nodes = []
         current_node_id = 0
 
-        pos = {}
+        # pos = {}
+        pos = nx.spring_layout(G)
 
         for input_index, input_value in enumerate(self.input_data[0]):
+            # Bias value is orange-colored, skyblue-color for the rest of input
             color = 'orange' if input_index == 0 else 'skyblue'
             G.add_node(current_node_id, label=f'{input_value}', value=input_value, color=color)
             pos[current_node_id] = (0, -input_index * 2)
@@ -58,6 +60,6 @@ class GraphNetworkVisualizer:
 
         plt.figure(figsize=(12, 6))
         nx.draw(G, pos, labels=labels, with_labels=True, node_size=1200, node_color=colors, font_size=10, font_weight='bold')
-        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=9)
+        nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, label_pos=0.8, font_size=8)
         plt.axis('off')
         plt.show()
